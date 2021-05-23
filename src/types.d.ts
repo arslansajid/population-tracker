@@ -33,7 +33,7 @@ declare module "react-select";
   
   type AppAction = {
     type: string
-    data: IApp
+    payload: IApp
   }
   
   type DispatchType = (args: AppAction) => AppAction
