@@ -8,7 +8,10 @@ import {
   RESET_SEARCH_RESULTS
 } from "./types";
 
-const reducer = (state = initialState, action) => {
+const reducer = (
+  state: AppState = initialState,
+  action: AppAction
+): AppState => {
   switch (action.type) {
     case SET_SELECTED_COUNTRY:
       return {

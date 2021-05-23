@@ -1,6 +1,5 @@
 import {
   SET_SELECTED_COUNTRY,
-  SEND_MESSAGE,
   SET_COUNTRIES,
   SET_GRAPH_DATA,
   TOGGLE_GRPAH_DIALOG,
@@ -9,17 +8,12 @@ import {
 } from "./types";
 
 
-export const setSelectedCountry = (country) => ({
+export const setSelectedCountry = (country:ICountry) => ({
   type: SET_SELECTED_COUNTRY,
   payload: country,
 });
 
-export const sendMessage = (message) => ({
-  type: SEND_MESSAGE,
-  payload: message,
-});
-
-export const setCountries = (countries) => ({
+export const setCountries = (countries: ICountry[]) => ({
   type: SET_COUNTRIES,
   payload: countries,
 });
@@ -33,7 +27,7 @@ export const toggleGraphDialog = () => ({
   type: TOGGLE_GRPAH_DIALOG,
 });
 
-export const setSearchResults = (data) => ({
+export const setSearchResults = (data: ICountry[]) => ({
   type: SET_SEARCH_RESULTS,
   payload: data,
 });
