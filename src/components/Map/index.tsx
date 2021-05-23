@@ -3,11 +3,8 @@ import GoogleMapReact from "google-map-react";
 import withStyles from "@material-ui/core/styles/withStyles";
 import styles from "./styles";
 import { GOOGLE_MAP_API_KEY, mapProps } from "../../config";
-// import Marker from "./components/Marker";
-import Pin from "./components/Pin";
-
+import MapPin from "../MapPin";
 import { useSelector } from "react-redux";
-
 interface Props {
   classes: object;
 }
@@ -46,11 +43,8 @@ const SimpleMap: React.FC<Props> = (props: any) => {
         defaultZoom={mapProps.zoom}
         ref={mapRef}
       >
-        {/* {selectedCountry && (
-          <Marker lat={mapLat} lng={mapLng} text={selectedCountry?.name} />
-        )} */}
         {searchResults.map((pin) => (
-          <Pin
+          <MapPin
             key={pin?.name}
             lat={pin.latlng[0]}
             lng={pin.latlng[1]}

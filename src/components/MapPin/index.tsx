@@ -2,26 +2,15 @@ import React from "react";
 import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { useDispatch } from "react-redux";
-import { Dispatch } from "redux";
-import { toggleGraphDialog } from "../../../../redux/reducers/commonReducer/actions";
-
 interface Props {
   text: string;
   lat: number;
   lng: number;
 }
 
-const Marker: React.FC<Props> = (props: any) => {
+const MapPin: React.FC<Props> = (props: any) => {
   const classes = useStyles();
   const { text } = props;
-
-  const dispatch: Dispatch<any> = useDispatch();
-
-  const showGraphDialog = (e: any) => {
-    e.stopPropagation();
-    dispatch(toggleGraphDialog());
-  };
 
   return (
     <>
@@ -33,10 +22,11 @@ const Marker: React.FC<Props> = (props: any) => {
         variant="contained"
         color="secondary"
         size="small"
-        onClick={showGraphDialog}
         disableElevation
+        disableRipple
+        onClick={(e) => e.stopPropagation()}
       >
-        View {text} Graph
+        {text}
       </Button>
     </>
   );
@@ -44,17 +34,17 @@ const Marker: React.FC<Props> = (props: any) => {
 
 const useStyles = makeStyles((theme) => ({
   circle: {
-    width: 18,
-    height: 18,
+    width: 15,
+    height: 15,
     position: "absolute",
-    left: 6,
-    top: 6,
+    left: 5,
+    top: 5,
     background: "white",
     borderRadius: "50%",
   },
   marker: {
-    width: "30px",
-    height: "30px",
+    width: "25px",
+    height: "25px",
     borderRadius: "50% 50% 50% 0",
     border: `2px solid ${theme.palette.secondary.main}`,
     background: theme.palette.secondary.main,
@@ -66,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
     transform: "rotate(-45deg)",
     left: "50%",
     top: "50%",
-    margin: "-20px 0 0 -20px",
+    margin: "-20px 0 0 -15px",
     WebkitAnimationName: "bounce",
     MozAnimationName: "bounce",
     OAnimationName: "bounce",
@@ -83,22 +73,15 @@ const useStyles = makeStyles((theme) => ({
     MsAnimationDuration: "1s",
     animationDuration: "1s",
   },
-  text: {
-    transform: "rotate(45deg)",
-    fontSize: 12,
-    position: "relative",
-    color: "white",
-    fontWeight: 600,
-    top: 6,
-  },
   button: {
     whiteSpace: "nowrap",
     position: "absolute",
     left: "50%",
     top: "50%",
-    transform: "translate(-50%, 75%)",
+    transform: "translate(-50%, 50%)",
     textTransform: "capitalize",
+    padding: 4,
   },
 }));
 
-export default Marker;
+export default MapPin;
