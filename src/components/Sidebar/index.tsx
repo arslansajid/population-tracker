@@ -12,10 +12,12 @@ import {
 import withStyles from "@material-ui/core/styles/withStyles";
 import styles from "./styles";
 
+// components
 import SearchInput from "../SearchInput";
 import useDebounce from "../../hooks/useDebounce";
 import useDidMountEffect from "../../hooks/useDidMountEffect";
 
+// redux
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "redux";
 import {
@@ -46,15 +48,15 @@ const Sidebar: React.FC<Props> = (props: any) => {
   const { countries, searchResults } = state;
   const selectedCountry: ISelectedCountry = state.selectedCountry;
 
-  const [stateUsers, setStateUsers] = useState<any[]>([]);
+  const [stateCountries, setStateCountries] = useState<any[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
 
-  const filterUsersByName = React.useCallback(
+  const filterCountriesByName = React.useCallback(
     (name) => {
       let results = countries.filter((x: any) =>
         x.name.toLowerCase().includes(name.toLowerCase().trim())
       );
-      setStateUsers(results);
+      setStateCountries(results);
       setSearchTerm(name);
     },
     [countries]
@@ -73,16 +75,16 @@ const Sidebar: React.FC<Props> = (props: any) => {
 
   useEffect(() => {
     if (countries.length) {
-      setStateUsers(countries);
+      setStateCountries(countries);
     }
   }, [countries]);
 
-  const debouncedResults = useDebounce(stateUsers, 500);
+  const debouncedResults = useDebounce(stateCountries, 500);
 
   useDidMountEffect(() => {
     if (debouncedResults && searchTerm !== "") {
       dispatch(setSearchResults(debouncedResults));
-      dispatch(setSelectedCountry(stateUsers[0]));
+      dispatch(setSelectedCountry(stateCountries[0]));
     } else if (searchResults.length && searchTerm === "") {
       dispatch(resetSearchResults());
     }
@@ -92,7 +94,7 @@ const Sidebar: React.FC<Props> = (props: any) => {
     <>
       <Grid className={`${classes.borderRight500} ${classes.messageArea}`}>
         <Grid className={classes.searchChatContainer}>
-          <SearchInput onChange={(val: string) => filterUsersByName(val)} />
+          <SearchInput onChange={(val: string) => filterCountriesByName(val)} />
         </Grid>
         <Grid className={classes.listContainer}>
           <List
@@ -103,7 +105,7 @@ const Sidebar: React.FC<Props> = (props: any) => {
                 : classes.list
             }
           >
-            {stateUsers.map((item: CountryObject) => {
+            {stateCountries.map((item: CountryObject) => {
               return (
                 <Grid
                   key={item.name}

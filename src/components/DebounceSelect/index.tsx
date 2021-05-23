@@ -76,7 +76,7 @@ const DebounceSelect = (props) => {
 
   const debouncedSearchTerm = useDebounce(inputText, 500);
 
-  const filterUsersByName = React.useCallback(
+  const filterCountriesByName = React.useCallback(
     (name) => {
       let results = countries.filter((x) =>
         x.name.toLowerCase().includes(name.toLowerCase().trim())
@@ -89,7 +89,7 @@ const DebounceSelect = (props) => {
 
   useEffect(() => {
     if (debouncedSearchTerm && valueSelected !== inputText) {
-      filterUsersByName(debouncedSearchTerm);
+      filterCountriesByName(debouncedSearchTerm);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedSearchTerm]);
