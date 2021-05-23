@@ -104,7 +104,7 @@ const DebounceSelect = (props) => {
   };
 
   useDidMountEffect(() => {
-    if (filterResults && inputText !== "") {
+    if (filterResults.length && inputText !== "") {
       dispatch(setSearchResults(filterResults));
       if (selectedCountry?.name !== filterResults[0].name) {
         dispatch(setSelectedCountry(filterResults[0]));
