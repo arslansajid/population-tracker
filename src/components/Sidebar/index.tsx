@@ -31,14 +31,6 @@ interface Props {
   classes: object;
 }
 
-interface CountryObject {
-  id: number;
-  name: string;
-  nativeName: string;
-  flag: string;
-  messages: any[];
-}
-
 const Sidebar: React.FC<Props> = (props: any) => {
   const { classes } = props;
 
@@ -62,7 +54,7 @@ const Sidebar: React.FC<Props> = (props: any) => {
     [countries]
   );
 
-  const handleUserClick = (item: CountryObject) => {
+  const handleUserClick = (item: ICountry) => {
     if (selectedCountry?.name !== item.name) {
       // if different country is clicked
       dispatch(setSelectedCountry(item));
@@ -105,7 +97,7 @@ const Sidebar: React.FC<Props> = (props: any) => {
                 : classes.list
             }
           >
-            {stateCountries.map((item: CountryObject) => {
+            {stateCountries.map((item: ICountry) => {
               return (
                 <Grid
                   key={item.name}
