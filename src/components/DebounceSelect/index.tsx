@@ -96,7 +96,6 @@ const DebounceSelect = (props) => {
 
   const handleItemSelect = (option) => {
     const selectedLabel = getOptionLabel(option);
-    // onChange(option);
     setInputText(selectedLabel);
     if (selectedCountry?.name !== option.name) {
       dispatch(setSelectedCountry(option));
@@ -185,7 +184,6 @@ DebounceSelect.defaultProps = {
 
 DebounceSelect.propTypes = {
   getOptionLabel: PropTypes.func.isRequired,
-  // onChange: PropTypes.func.isRequired,
   label: PropTypes.string.isRequired,
   fullWidth: PropTypes.bool,
 };
