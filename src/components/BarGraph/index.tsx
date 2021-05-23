@@ -12,7 +12,7 @@ import {
 import { useSelector } from "react-redux";
 import CustomLabel from "./components/CustomLabel";
 import { GRAPH_COLORS } from "../../config";
-import { formatPopulation } from "../../utils/helpers";
+import { formatPopulation, getRandomFromArray } from "../../utils/helpers";
 
 const BarGraph = () => {
   const state = useSelector((state: AppState) => state);
@@ -45,7 +45,7 @@ const BarGraph = () => {
               key={entry.name}
               fill={
                 // random color selection
-                GRAPH_COLORS[Math.floor(Math.random() * GRAPH_COLORS.length)]
+                getRandomFromArray(GRAPH_COLORS)
               }
             />
           ))}
