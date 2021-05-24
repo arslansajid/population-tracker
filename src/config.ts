@@ -1,4 +1,4 @@
-export const GOOGLE_MAP_API_KEY = "AIzaSyDai50O1JJN5mgRPVI4qb7kr7SUxDZvpnA";
+export const GOOGLE_MAP_API_KEY = "";
 export const COUNTRIES_API_END_POINT = "https://restcountries.eu/rest/v2/all";
 
 export const mapProps = {

@@ -6,7 +6,7 @@ import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import Map from "./components/Map";
 import GraphDialog from "./components/GraphDialog";
-import MobileTopBar from "./components/MobileSearch";
+import MobileSearch from "./components/MobileSearch";
 import LoadingSpinner from "./components/LoadingSpinner";
 import SnackBar from "./components/SnackBar";
 
@@ -33,6 +33,7 @@ const App = () => {
   const [snackBarVariant, setSnackBarVariant] = React.useState("success");
 
   useEffect(() => {
+    // fetch countries data on app load
     getAllCountries()
       .then((res) => {
         dispatch(setCountries(res));
@@ -50,20 +51,20 @@ const App = () => {
     <>
       <Header />
       <Container maxWidth="lg">
+        {/* Render for small screens only */}
         <Hidden mdUp>
-          <MobileTopBar />
+          <MobileSearch />
         </Hidden>
         <Box mt={1.5} className={classes.border}>
           <Grid container>
-            {/* Sidebar */}
+            {/* Sidebar for countries list */}
             <Hidden smDown>
               <Grid item md={4}>
                 <Sidebar />
               </Grid>
             </Hidden>
-            {/* Message Area */}
+            {/* Map Area */}
             <Grid item xs>
-              {/* <MessageArea /> */}
               <Map />
             </Grid>
           </Grid>

@@ -21,6 +21,7 @@ const SimpleMap: React.FC<Props> = (props: any) => {
   const mapLat = useMemo(() => selectedCountry?.latlng[0], [selectedCountry]);
   const mapLng = useMemo(() => selectedCountry?.latlng[1], [selectedCountry]);
 
+  // center for the map
   const mapCenter = useMemo(
     () => ({
       lat: mapLat || mapProps.center.lat,

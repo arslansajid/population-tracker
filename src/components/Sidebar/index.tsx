@@ -54,7 +54,7 @@ const Sidebar: React.FC<Props> = (props: any) => {
     [countries]
   );
 
-  const handleUserClick = (item: ICountry) => {
+  const handleCountryClick = (item: ICountry) => {
     if (selectedCountry?.name !== item.name) {
       // if different country is clicked
       dispatch(setSelectedCountry(item));
@@ -75,8 +75,9 @@ const Sidebar: React.FC<Props> = (props: any) => {
 
   useDidMountEffect(() => {
     if (debouncedResults && searchTerm !== "") {
+      const firstResult = stateCountries[0]; // select first country when user search
       dispatch(setSearchResults(debouncedResults));
-      dispatch(setSelectedCountry(stateCountries[0]));
+      dispatch(setSelectedCountry(firstResult));
     } else if (searchResults.length && searchTerm === "") {
       dispatch(resetSearchResults());
     }
@@ -107,7 +108,7 @@ const Sidebar: React.FC<Props> = (props: any) => {
                       : classes.listItem
                   }
                 >
-                  <ListItem button onClick={() => handleUserClick(item)}>
+                  <ListItem button onClick={() => handleCountryClick(item)}>
                     <ListItemIcon>
                       <Avatar
                         alt="user-img"
@@ -127,6 +128,7 @@ const Sidebar: React.FC<Props> = (props: any) => {
               );
             })}
           </List>
+          {/* show button if the the search term matches any country */}
           {Boolean(searchResults.length) && (
             <Grid className={classes.fixedButtonContainer}>
               <Button
