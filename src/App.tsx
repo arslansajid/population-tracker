@@ -42,7 +42,7 @@ const App = () => {
       .catch((err) => {
         setShowSnackBar(true);
         setSnackBarVariant("error");
-        setSnackBarMessage(err);
+        setSnackBarMessage(err?.msg || "Unable to fetch countries data!");
         setIsLoading(false);
       });
   }, [dispatch]);
