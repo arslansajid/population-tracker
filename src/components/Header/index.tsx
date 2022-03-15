@@ -7,19 +7,17 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import styles from "./styles";
 
 interface Props {
-  classes: object;
+  classes: any;
 }
 
-const Header: React.FC<Props> = (props: any) => {
-  const { classes } = props;
-
+const Header: React.FC<Props> = ({ classes }) => {
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
           <Container maxWidth="lg">
             <Typography variant="h6" className={classes.title}>
-              GSY Tracker
+              Population Tracker
             </Typography>
           </Container>
         </Toolbar>

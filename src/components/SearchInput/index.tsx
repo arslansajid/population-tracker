@@ -7,9 +7,9 @@ interface Props {
   onChange(value: string): any;
 }
 
-const SearchInput: React.FC<Props> = (props: any) => {
+const SearchInput: React.FC<Props> = ({ onChange }) => {
   const classes = useStyles();
-  const { onChange } = props;
+
   return (
     <TextField
       autoFocus

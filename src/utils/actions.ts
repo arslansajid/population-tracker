@@ -7,6 +7,6 @@ export const getAllCountries = async () => {
     const res = await axios.get(COUNTRIES_API_END_POINT);
     return res.data;
   } catch (err) {
-    throw err.response;
+    throw err;
   }
 };

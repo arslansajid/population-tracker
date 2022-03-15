@@ -46,7 +46,7 @@ const Sidebar: React.FC<Props> = (props: any) => {
   const filterCountriesByName = React.useCallback(
     (name) => {
       let results = countries.filter((x: any) =>
-        x.name.toLowerCase().includes(name.toLowerCase().trim())
+        x.name.common.toLowerCase().includes(name.toLowerCase().trim())
       );
       setStateCountries(results);
       setSearchTerm(name);
@@ -55,7 +55,7 @@ const Sidebar: React.FC<Props> = (props: any) => {
   );
 
   const handleCountryClick = (item: ICountry) => {
-    if (selectedCountry?.name !== item.name) {
+    if (selectedCountry?.name.common !== item.name.common) {
       // if different country is clicked
       dispatch(setSelectedCountry(item));
       if (!searchTerm.length) {
@@ -101,9 +101,9 @@ const Sidebar: React.FC<Props> = (props: any) => {
             {stateCountries.map((item: ICountry) => {
               return (
                 <Grid
-                  key={item.name}
+                  key={item.name?.common}
                   className={
-                    selectedCountry?.name === item.name
+                    selectedCountry?.name.common === item.name.common
                       ? classes.selectedItem
                       : classes.listItem
                   }
@@ -113,14 +113,16 @@ const Sidebar: React.FC<Props> = (props: any) => {
                       <Avatar
                         alt="user-img"
                         src={
-                          item.flag
-                            ? item.flag
+                          item.flags
+                            ? item.flags?.png
                             : require("../../assets/user.png")
                         }
                       />
                     </ListItemIcon>
                     <ListItemText>
-                      <Typography variant="body1">{item.name}</Typography>
+                      <Typography variant="body1">
+                        {item.name?.common}
+                      </Typography>
                       <Typography variant="body2">{item.nativeName}</Typography>
                     </ListItemText>
                   </ListItem>

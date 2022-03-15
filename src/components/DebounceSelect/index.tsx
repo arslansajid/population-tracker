@@ -79,7 +79,7 @@ const DebounceSelect = (props) => {
   const filterCountriesByName = React.useCallback(
     (name) => {
       let results = countries.filter((x) =>
-        x.name.toLowerCase().includes(name.toLowerCase().trim())
+        x.name.common.toLowerCase().includes(name.toLowerCase().trim())
       );
       setFilterResults(results);
       setInputText(name);
@@ -97,7 +97,7 @@ const DebounceSelect = (props) => {
   const handleItemSelect = (option) => {
     const selectedLabel = getOptionLabel(option);
     setInputText(selectedLabel);
-    if (selectedCountry?.name !== option.name) {
+    if (selectedCountry?.name.common !== option.name.common) {
       dispatch(setSelectedCountry(option));
     }
   };
@@ -105,7 +105,7 @@ const DebounceSelect = (props) => {
   useDidMountEffect(() => {
     if (filterResults.length && inputText !== "") {
       dispatch(setSearchResults(filterResults));
-      if (selectedCountry?.name !== filterResults[0].name) {
+      if (selectedCountry?.name.common !== filterResults[0].name.common) {
         dispatch(setSelectedCountry(filterResults[0]));
       }
     } else if (searchResults.length && inputText === "") {
@@ -141,8 +141,10 @@ const DebounceSelect = (props) => {
                 <ListItem
                   button
                   onClick={() => handleItemSelect(option)}
-                  key={option?.name}
-                  selected={option?.name === selectedCountry?.name}
+                  key={option?.name.common}
+                  selected={
+                    option?.name.common === selectedCountry?.name.common
+                  }
                 >
                   <ListItemIcon>
                     <Avatar
