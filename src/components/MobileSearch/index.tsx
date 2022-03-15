@@ -17,7 +17,7 @@ const MobileSearch: React.FC<Props> = (props: any) => {
         <DebounceSelect
           label="Search Countries"
           fullWidth
-          getOptionLabel={(option) => option.name}
+          getOptionLabel={(option) => option.name.common}
         />
       </Grid>
     </Grid>

@@ -6,11 +6,10 @@ import { GOOGLE_MAP_API_KEY, mapProps } from "../../config";
 import MapPin from "../MapPin";
 import { useSelector } from "react-redux";
 interface Props {
-  classes: object;
+  classes: any;
 }
 
-const SimpleMap: React.FC<Props> = (props: any) => {
-  const { classes } = props;
+const SimpleMap: React.FC<Props> = ({ classes }) => {
   const mapRef = useRef(null);
 
   const state = useSelector((state: AppState) => state);
@@ -46,10 +45,10 @@ const SimpleMap: React.FC<Props> = (props: any) => {
       >
         {searchResults.map((pin) => (
           <MapPin
-            key={pin?.name}
+            key={pin?.name.common}
             lat={pin.latlng[0]}
             lng={pin.latlng[1]}
-            text={pin?.name}
+            text={pin?.name.common}
           />
         ))}
       </GoogleMapReact>

@@ -8,9 +8,8 @@ interface Props {
   lng: number;
 }
 
-const MapPin: React.FC<Props> = (props: any) => {
+const MapPin: React.FC<Props> = ({ text }) => {
   const classes = useStyles();
-  const { text } = props;
 
   return (
     <>

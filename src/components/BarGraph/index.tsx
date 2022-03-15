@@ -16,7 +16,7 @@ import { formatPopulation, getRandomFromArray } from "../../utils/helpers";
 
 const BarGraph = () => {
   const state = useSelector((state: AppState) => state);
-  const graphData: any[] = state.searchResults;
+  const graphData: any[] = state?.searchResults;
 
   return (
     <ResponsiveContainer width="100%" height={600}>
@@ -26,7 +26,7 @@ const BarGraph = () => {
         data={graphData}
         margin={{ top: 25, right: 0, left: 0, bottom: 25 }}
       >
-        <XAxis dataKey="name" fontFamily="sans-serif" dy="25" />
+        <XAxis dataKey="name.common" fontFamily="sans-serif" dy="25" />
         <YAxis
           style={{
             fontSize: "0.7rem",
@@ -42,7 +42,7 @@ const BarGraph = () => {
         >
           {graphData.map((entry) => (
             <Cell
-              key={entry.name}
+              key={entry.name.common}
               fill={
                 // random color selection
                 getRandomFromArray(GRAPH_COLORS)
